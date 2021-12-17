@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 $servidor = "localhost";
 $usuario = "root";
@@ -10,19 +10,16 @@ if ($conn->connect_error) {
 }
 
 $order = $_GET['order'];
+$direction = $_GET['direction'];
 
-
-$sql = "SELECT * from onibus ORDER BY '$order' DESC";
+$sql = "SELECT * from onibus ORDER BY $order $direction";
 $result = $conn->query($sql);
 
 $arr[] = array();
 $i = 0;
-While ($linha = $result->fetch_assoc()){
+while ($linha = $result->fetch_assoc()) {
     $arr[$i] = $linha;
-     $i++;
+    $i++;
 }
 
 echo json_encode($arr, JSON_UNESCAPED_UNICODE);
-
-
-?>
